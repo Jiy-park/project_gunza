@@ -98,8 +98,10 @@
                     tools:text="지용 보카 어저구 저쩌구~~~~~~" />
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:id="@+id/btnLike"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
                     android:gravity="center_horizontal"
                     android:orientation="horizontal">
                     <androidx.appcompat.widget.AppCompatImageView
@@ -109,7 +111,7 @@
                         android:src="@drawable/ic_silver_heart"
                         android:layout_marginEnd="10dp"/>
                     <TextView
-                        android:id="@+id/btnLike"
+                        android:id="@+id/tvLike"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"

@@ -41,6 +41,7 @@ object FIELD {
     object COMMENT{
         const val ROOT = "comment"
         const val CREATE_AT = "createdAt"
+        const val POST_ID = "postId"
     }
 
     object TYPE{

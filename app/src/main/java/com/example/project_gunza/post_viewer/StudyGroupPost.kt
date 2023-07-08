@@ -5,11 +5,9 @@ import android.content.Context
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.project_gunza.*
 import com.example.project_gunza.common.FIELD
@@ -28,11 +26,12 @@ class StudyGroupPost : AppCompatActivity() {
     private lateinit var context: Context
     private lateinit var pref: Preference
 
-    private lateinit var postCommentViewModel: PostCommentViewModel
+    private lateinit var postCommentViewModel: PostViewModel
     private lateinit var userViewModel: UserViewModel
 
     private var post: PostStruct? = null
     private var author: PostAuthorStruct? = null
+    private var isUserLikePost = false
 
     private lateinit var commentAdapter: PostCommentAdapter
 
@@ -40,9 +39,10 @@ class StudyGroupPost : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         init()
 
-        setViewEvent()
         getDataFromIntent()
         setViewModel()
+        setView()
+        setViewEvent()
 
         binding.recyclerviewComment.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
@@ -57,11 +57,19 @@ class StudyGroupPost : AppCompatActivity() {
         commentAdapter = PostCommentAdapter()
     }
 
+    private fun setView(){
+        isUserLikePost = checkLike()
+        Glide.with(context).load(
+            if(isUserLikePost){ R.drawable.ic_heart }
+            else { R.drawable.ic_silver_heart }
+        ).into(binding.ivHeart)
+    }
+
     @SuppressLint("NotifyDataSetChanged")
     private fun setViewModel(){
         userViewModel = UserViewModel(pref.getUserId())
 
-        postCommentViewModel = PostCommentViewModel(post!!.postId)
+        postCommentViewModel = PostViewModel(post!!.postId)
         postCommentViewModel.postInfo.observe(this@StudyGroupPost){ commentList ->
             binding.commentCount = commentList.size
             commentAdapter.commentList = commentList
@@ -91,10 +99,7 @@ class StudyGroupPost : AppCompatActivity() {
 
     private fun setViewEvent(){
         binding.btnDone.setOnClickListener { createComment() }
-        binding.btnLike.setOnClickListener {
-            if(checkLike()){ alreadyLikePost() }
-            else { likePost() }
-        }
+        binding.btnLike.setOnClickListener { likePost() }
     }
 
     /** 유저가 좋아요 버튼을 눌렀었는지 체크
@@ -111,12 +116,20 @@ class StudyGroupPost : AppCompatActivity() {
         }
     }
 
-    /** 게시글 좋아요 버튼*/
+    /** 게시글 좋아요 버튼
+     * 1. 좋아요 -> 안 좋아요 : isRemove = true -> 데이터 삭제
+     * 2. 안 좋아요 -> 좋아요 : isRemove = false -> 데이터 추가
+     * 3. 데이터 변경 후 뷰 변경*/
     private fun likePost(){
-        postCommentViewModel.likePost(post?.postId!!){
-            userViewModel.updateUserInfo(FIELD.USER.LIKE_POST, post?.postId!!, FIELD.TYPE.LIST)
-            binding.btnLike.setOnClickListener { alreadyLikePost() }
-        }
+        userViewModel.updateUserInfo(FIELD.USER.LIKE_POST, post!!.postId, FIELD.TYPE.LIST, isRemove = isUserLikePost)
+
+        isUserLikePost = !isUserLikePost
+        Glide.with(context).load(
+            if(isUserLikePost){ R.drawable.ic_heart }
+            else { R.drawable.ic_silver_heart }
+        ).into(binding.ivHeart)
+
+
     }
 
     /** 이미 좋아요 버튼을 누르고 있음*/

@@ -71,7 +71,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 tools:text="유저 레벨(경험치)"
-                android:text="@{Integer.toString(userViewModel.userExp/V.LEVEL_CONVERT_VAL) + `(` +Integer.toString(userViewModel.userExp%V.LEVEL_CONVERT_VAL)+`)`}"
+                android:text="@{`Lv.` + Integer.toString(userViewModel.userExp / V.LEVEL_CONVERT_VAL) + `(` + Integer.toString(((userViewModel.userExp % V.LEVEL_CONVERT_VAL) * 100) / V.LEVEL_CONVERT_VAL) + `%)`}"
                 android:textSize="17sp"
                 android:fontFamily="@font/gunza_font_pixel"
                 android:textColor="@color/white"/>

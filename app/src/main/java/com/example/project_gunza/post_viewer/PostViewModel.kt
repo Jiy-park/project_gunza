@@ -6,11 +6,47 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.project_gunza.common.FIELD
 import com.example.project_gunza.data_class.Comment
+import com.example.project_gunza.data_class.PostStruct
 import com.google.firebase.firestore.FieldValue
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 
-class PostCommentViewModel(postId: String): ViewModel() {
+/** 포스트 모델*/
+class PostRepository {
+    private val postDB = Firebase.firestore.collection(FIELD.POST.ROOT)
+    private val commentDB = Firebase.firestore.collection(FIELD.COMMENT.ROOT)
+
+    var post: PostStruct? = null
+    var comment = listOf<Comment>()
+
+    private fun fetchPostData(postId: String){
+        Log.d("LOG_CHECK", "PostRepository :: fetchData() -> fetch post($postId) data")
+
+        postDB.document(postId)
+            .get()
+            .addOnSuccessListener {
+                post = it.toObject(PostStruct::class.java)
+                fetchCommentData(postId)
+            }
+    }
+
+    private fun fetchCommentData(postId: String){
+        Log.d("LOG_CHECK", "PostRepository :: fetchCommentData() -> fetch comment of post($postId) data")
+
+        commentDB.whereEqualTo(FIELD.COMMENT.POST_ID, postId)
+            .orderBy(FIELD.COMMENT.CREATE_AT, Query.Direction.DESCENDING)
+            .get()
+            .addOnSuccessListener {
+                comment =
+            }
+    }
+}
+
+
+/** 포스트 뷰모델*/
+class PostViewModel(private val postId: String): ViewModel() {
     private val db = Firebase.firestore
 
     private val _postInfo = MutableLiveData<List<Comment>>()

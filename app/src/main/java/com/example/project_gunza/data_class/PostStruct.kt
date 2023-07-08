@@ -37,9 +37,6 @@ data class Comment(
     val commentId: String = "",
     val postId: String = "",
     val authorId: String = "",
-    val authorName: String = "",
-    val authorUnit: String = "",
-    val authorLevel: Int = 0,
     val createdAt: String = "",
     val commentBody: String = "",
 )

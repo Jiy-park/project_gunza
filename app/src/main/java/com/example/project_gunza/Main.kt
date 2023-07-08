@@ -15,6 +15,7 @@ import com.example.project_gunza.data_class.SignStruct
 import com.example.project_gunza.databinding.ActivityMainBinding
 import com.example.project_gunza.dialog.DialogSignFunc
 import com.example.project_gunza.gunza_info.GunzaInfo
+import com.example.project_gunza.main_page.ModifyProfile
 import com.example.project_gunza.main_page.UserViewModel
 import com.example.project_gunza.sign.Sign
 import com.example.project_gunza.study_room.StudyRoom
@@ -103,14 +104,17 @@ class Main : AppCompatActivity() {
     private fun setViewEvent(){
         binding.layerTopPanel.btnSetting.setOnClickListener {
 //            TODO("임시로 로그아웃 기능만 추가 나중에 더 추가해야함")
-            DialogSignFunc.signOut(context){
-                userViewModel.deleteUserRepo()
-                val intent = Intent(context, Sign::class.java).apply {
-                    putExtra(INTENT.SIGN.OUT, true)
-                }
-                startActivity(intent)
-                finish()
-            }
+            val intent = Intent(this@Main, ModifyProfile::class.java)
+            startActivity(intent)
+
+//            DialogSignFunc.signOut(context){
+//                userViewModel.deleteUserRepo()
+//                val intent = Intent(context, Sign::class.java).apply {
+//                    putExtra(INTENT.SIGN.OUT, true)
+//                }
+//                startActivity(intent)
+//                finish()
+//            }
         }
 
         binding.btnMoveStudyGroup.setOnClickListener {

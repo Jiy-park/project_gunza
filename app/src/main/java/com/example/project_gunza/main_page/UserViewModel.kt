@@ -19,9 +19,12 @@ class UserViewModel(userId: String): ViewModel() {
     }
 
     /** * 유저에 데이터 추가
-     * @see UserUpdate.updateUserInfo*/
-    fun updateUserInfo(field: String, value: Any, fieldType: String, key: String? = null){
-        userRepo.updateUserInfo(field, value, fieldType, key)
+     * @param isRemove true 경우 ,[key] 안 넣어도 됨
+     * @see UserRepository.addUserInfo
+     * @see UserRepository.removeUserInfo*/
+    fun updateUserInfo(field: String, value: Any, fieldType: String, key: String? = null, isRemove: Boolean = false){
+        if(isRemove) { userRepo.removeUserInfo(field, value, fieldType) }
+        else{ userRepo.addUserInfo(field, value, fieldType, key) }
     }
 
     /** 로그 아웃 시 호출 [UserRepository.instance] 의 값을 지움

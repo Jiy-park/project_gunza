@@ -16,7 +16,7 @@ class UserRepository{
 
     /** * 유저에 데이터 추가
      * @param fieldType == [FIELD.TYPE.MAP] 일 때는 [keyValue] 가 null 이면 안됨*/
-    fun updateUserInfo(field: String, value: Any, fieldType: String, keyValue: String? = null){
+    fun addUserInfo(field: String, value: Any, fieldType: String, keyValue: String? = null){
         Log.d("LOG_CHECK", "UserRepository :: updateUserInfo() -> update")
         db.document(userId)
             .run{
@@ -28,6 +28,24 @@ class UserRepository{
                             this.update("$field.$key", value)
                         }?: run{ Log.e("LOG_CHECK", "UserRepository :: updateUserInfo() -> key is null!!!") }
                         }
+                    else -> {}
+                }
+            }
+    }
+
+    /** * 유저 데이터 삭제*/
+    fun removeUserInfo(field: String, value: Any, fieldType: String){  //, keyValue: String? = null){
+        Log.d("LOG_CHECK", "UserRepository :: updateUserInfo() -> update")
+        db.document(userId)
+            .run{
+                when(fieldType){
+                    FIELD.TYPE.NORMAL -> { this.update(field, FieldValue.increment(-(value as Long))) }
+                    FIELD.TYPE.LIST -> { this.update(field, FieldValue.arrayRemove(value)) }
+                    FIELD.TYPE.MAP -> {
+//                        keyValue?.let { key->
+//                            this.update("$field.$key", value)
+//                        }?: run{ Log.e("LOG_CHECK", "UserRepository :: updateUserInfo() -> key is null!!!") }
+                    }
                     else -> {}
                 }
             }

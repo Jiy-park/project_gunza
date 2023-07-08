@@ -10,14 +10,14 @@ import com.example.project_gunza.Main
 import com.example.project_gunza.common.Preference
 import com.example.project_gunza.data_class.SignStruct
 import com.example.project_gunza.data_class.UserStruct
-import com.example.project_gunza.databinding.ActivityLogInBinding
+import com.example.project_gunza.databinding.ActivityStartAppBinding
 import com.example.project_gunza.dialog.DialogSignFunc
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 class Sign : AppCompatActivity() {
     private val db = Firebase.firestore
-    private val binding by lazy { ActivityLogInBinding.inflate(layoutInflater) }
+    private val binding by lazy { ActivityStartAppBinding.inflate(layoutInflater) }
     private val context by lazy { binding.root.context }
     private val pref by lazy { Preference(context) }
 
