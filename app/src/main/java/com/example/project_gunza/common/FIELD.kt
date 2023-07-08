@@ -36,12 +36,15 @@ object FIELD {
         const val CREATE_AT = "createdAt"
         const val COMMENT = "comment"
         const val LIKE = "like"
+        const val TITLE = "postTitle"
+        const val CONTENT = "content"
     }
 
     object COMMENT{
         const val ROOT = "comment"
         const val CREATE_AT = "createdAt"
         const val POST_ID = "postId"
+        const val CONTENT = "commentBody"
     }
 
     object TYPE{

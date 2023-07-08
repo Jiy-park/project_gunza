@@ -4,104 +4,116 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.project_gunza.common.FIELD
-import com.example.project_gunza.data_class.Comment
-import com.example.project_gunza.data_class.PostStruct
-import com.google.firebase.firestore.FieldValue
-import com.google.firebase.firestore.Query
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.firestore.ktx.toObject
-import com.google.firebase.ktx.Firebase
+import androidx.lifecycle.viewModelScope
+import com.example.project_gunza.data_class.*
+import kotlinx.coroutines.*
 
-/** 포스트 모델*/
-class PostRepository {
-    private val postDB = Firebase.firestore.collection(FIELD.POST.ROOT)
-    private val commentDB = Firebase.firestore.collection(FIELD.COMMENT.ROOT)
-
-    var post: PostStruct? = null
-    var comment = listOf<Comment>()
-
-    private fun fetchPostData(postId: String){
-        Log.d("LOG_CHECK", "PostRepository :: fetchData() -> fetch post($postId) data")
-
-        postDB.document(postId)
-            .get()
-            .addOnSuccessListener {
-                post = it.toObject(PostStruct::class.java)
-                fetchCommentData(postId)
-            }
-    }
-
-    private fun fetchCommentData(postId: String){
-        Log.d("LOG_CHECK", "PostRepository :: fetchCommentData() -> fetch comment of post($postId) data")
-
-        commentDB.whereEqualTo(FIELD.COMMENT.POST_ID, postId)
-            .orderBy(FIELD.COMMENT.CREATE_AT, Query.Direction.DESCENDING)
-            .get()
-            .addOnSuccessListener {
-                comment =
-            }
-    }
-}
-
-
-/** 포스트 뷰모델*/
+/** 게시글 뷰모델*/
 class PostViewModel(private val postId: String): ViewModel() {
-    private val db = Firebase.firestore
+    private val postRepository = PostRepository()
 
-    private val _postInfo = MutableLiveData<List<Comment>>()
-
-    val postInfo: LiveData<List<Comment>>
+    private val _postInfo = MutableLiveData<PostStruct>()
+    val postInfo: LiveData<PostStruct>
         get() = _postInfo
+
+    private val _postAuthor = MutableLiveData<SimpleUserStruct>()
+    val postAuthor: LiveData<SimpleUserStruct>
+        get() = _postAuthor
+
+    private val _commentList = MutableLiveData<Pair<List<CommentStruct>, List<SimpleUserStruct>>>()
+    val commentList: LiveData<Pair<List<CommentStruct>, List<SimpleUserStruct>>>
+        get() = _commentList
 
     init{
         Log.d("LOG_CHECK", "PostCommentViewModel :: () -> init viewModel")
-        db.collection(FIELD.COMMENT.ROOT)
-            .whereEqualTo(FIELD.POST.ID, postId)
-            .addSnapshotListener { value, error ->
-                error?.let {
-                    Log.e("LOG_CHECK", "PostCommentViewModel :: error in link to comment db () -> ${it.message}")
-                }?: run{
-                    _postInfo.value = value?.toList()?.map { it.toObject(Comment::class.java) }
+
+        viewModelScope.launch(Dispatchers.IO) {
+            postRepository.fetchPostData(postId)
+            postRepository.fetchCommentData(postId)
+            withContext(Dispatchers.Main){
+                _postInfo.value = postRepository.post
+
+                _postInfo.value?.let {
+                    _postAuthor.value = postRepository.postAuthor
+                    _commentList.value = postRepository.comment
                 }
             }
+        }
     }
 
-    fun createComment(comment: Comment, callback: ()->Unit){
-        db.collection(FIELD.COMMENT.ROOT)
-            .document(comment.commentId)
-            .set(comment)
-            .addOnSuccessListener {
-                callback()
+    /** 게시글에 댓글 작성 -> 댓글 새로 가져옴*/
+    fun createComment(comment: CommentStruct){
+        postRepository.createComment(comment){
+            viewModelScope.launch(Dispatchers.IO) {
+                postRepository.fetchCommentData(postId)
+                withContext(Dispatchers.Main){
+                    _commentList.value = postRepository.comment
+
+                }
             }
+        }
     }
 
-    /** 유저가 댓글을 작성했을 경우 관련 데이터베이스 업데이트
-     *- user - createComment
-     *- post - comment */
-    fun updateByCreateComment(userId: String, postId: String, commentId: String){
-        Log.d("LOG_CHECK", "PostCommentViewModel :: updateByCreateComment() -> " +
-                "userId : $userId\n" +
-                "postId : $postId\n" +
-                "commentId : $commentId\n")
-        // user 업데이트
-        db.collection(FIELD.USER.ROOT)
-            .document(userId)
-            .update(FIELD.USER.COMMENT, FieldValue.arrayUnion(commentId))
-
-        // post 업데이트
-        db.collection(FIELD.POST.ROOT)
-            .document(postId)
-            .update(FIELD.POST.COMMENT, FieldValue.arrayUnion(commentId))
+    /** 게시글의 정보를 수정
+     * @see PostRepository.updatePost*/
+    fun updatePost(newTitle: String, newContent: String){
+        postRepository.updatePost(newTitle, newContent){
+            refreshPost()
+        }
     }
 
-    /** 포스터의 좋아요 버튼 클릭*/
-    fun likePost(postId: String, callback: ()->Unit){
-        db.collection(FIELD.POST.ROOT)
-            .document(postId)
-            .update(FIELD.POST.LIKE, FieldValue.increment(1L))
-            .addOnSuccessListener {
-                callback()
+    /** 게시글의 좋아요 업데이트
+     * @see PostRepository.updateLike*/
+    fun updateLike(userId: String, isLike: Boolean, callback: () -> Unit){
+        postRepository.updateLike(userId, isLike){
+            refreshPost()
+            callback()
+        }
+    }
+    /** 댓글 내용 업데이트
+     * @see PostRepository.updateComment*/
+    fun updateComment(commentId: String, newContent: String){
+        postRepository.updateComment(commentId, newContent){
+            refreshComment()
+        }
+    }
+
+    /** 게시글 삭제
+     * @see PostRepository.deletePost*/
+    fun deletePost(userId: String, postId: String, callback: () -> Unit){
+        postRepository.deletePost(userId, postId){
+            callback()
+        }
+    }
+
+    /** 댓글 삭제
+     * @see PostRepository.deleteComment*/
+    fun deleteComment(commentId: String, commentAuthor: String){
+        postRepository.deleteComment(commentId, commentAuthor){
+            refreshComment()
+        }
+    }
+
+    /** 댓글을 새로 불러옴
+     * 1. 댓글 삭제
+     * 2. 댓글 업데이트*/
+    private fun refreshComment(){
+        viewModelScope.launch(Dispatchers.IO) {
+            postRepository.fetchCommentData(postId)
+            withContext(Dispatchers.Main){
+                _commentList.value = postRepository.comment
             }
+        }
+    }
+    /** 게시글을 새로 불러옴
+     * 1. 게시글 내용 | 제목 업데이트
+     * 2. 좋아요 업데이트*/
+    private fun refreshPost(){
+        viewModelScope.launch(Dispatchers.IO) {
+            postRepository.fetchPostData(postId)
+            withContext(Dispatchers.Main){
+                _postInfo.value = postRepository.post
+            }
+        }
     }
 }

@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.project_gunza.common.INTENT
-import com.example.project_gunza.data_class.PostAuthorStruct
+import com.example.project_gunza.data_class.SimpleUserStruct
 import com.example.project_gunza.data_class.PostStruct
 import com.example.project_gunza.databinding.ItemStudyGroupPostSimpleViewerBinding
 import com.example.project_gunza.post_viewer.StudyGroupPost
@@ -13,7 +13,7 @@ import com.example.project_gunza.post_viewer.StudyGroupPost
 class StudyGroupPostAdapter: RecyclerView.Adapter<StudyGroupPostAdapter.Holder>() {
     private lateinit var binding: ItemStudyGroupPostSimpleViewerBinding
     var postList = listOf<PostStruct>()
-    var authorList = listOf<PostAuthorStruct>()
+    var authorList = listOf<SimpleUserStruct>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         binding = ItemStudyGroupPostSimpleViewerBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -27,16 +27,16 @@ class StudyGroupPostAdapter: RecyclerView.Adapter<StudyGroupPostAdapter.Holder>(
     override fun getItemCount() = postList.size
 
     inner class Holder(private val binding: ItemStudyGroupPostSimpleViewerBinding): RecyclerView.ViewHolder(binding.root){
-        fun bind(post: PostStruct, author: PostAuthorStruct){
+        fun bind(post: PostStruct, author: SimpleUserStruct){
             binding.post = post
             binding.author = author
-            setViewEvent(post, author)
+            setViewEvent(post)
         }
-        private fun setViewEvent(post: PostStruct, author: PostAuthorStruct){
+        private fun setViewEvent(post: PostStruct){
             itemView.setOnClickListener {
-                val intent = Intent(binding.root.context, StudyGroupPost::class.java)
-                intent.putExtra(INTENT.POST.POST, post)
-                intent.putExtra(INTENT.POST.AUTHOR, author)
+                val intent = Intent(binding.root.context, StudyGroupPost::class.java).apply {
+                    putExtra(INTENT.POST.ID, post.postId)
+                }
                 binding.root.context.startActivity(intent)
             }
         }

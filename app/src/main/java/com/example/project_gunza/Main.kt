@@ -104,17 +104,17 @@ class Main : AppCompatActivity() {
     private fun setViewEvent(){
         binding.layerTopPanel.btnSetting.setOnClickListener {
 //            TODO("임시로 로그아웃 기능만 추가 나중에 더 추가해야함")
-            val intent = Intent(this@Main, ModifyProfile::class.java)
-            startActivity(intent)
+//            val intent = Intent(this@Main, ModifyProfile::class.java)
+//            startActivity(intent)
 
-//            DialogSignFunc.signOut(context){
-//                userViewModel.deleteUserRepo()
-//                val intent = Intent(context, Sign::class.java).apply {
-//                    putExtra(INTENT.SIGN.OUT, true)
-//                }
-//                startActivity(intent)
-//                finish()
-//            }
+            DialogSignFunc.signOut(context){
+                userViewModel.deleteUserRepo()
+                val intent = Intent(context, Sign::class.java).apply {
+                    putExtra(INTENT.SIGN.OUT, true)
+                }
+                startActivity(intent)
+                finish()
+            }
         }
 
         binding.btnMoveStudyGroup.setOnClickListener {

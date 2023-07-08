@@ -47,7 +47,7 @@ class CreateStudyGroupPost : AppCompatActivity() {
 
     @SuppressLint("SimpleDateFormat")
     private fun createPost(){
-        val content = binding.editContent.text.toString()
+        val content = binding.editCommentContent.text.toString()
         val postTitle = binding.editTitle.text.toString()
         if(content.isEmpty()) { Toast.makeText(context, "내용을 입력 해야 합니다.", Toast.LENGTH_SHORT).show() }
         else if(postTitle.isEmpty()) { Toast.makeText(context, "제목을 입력 해야 합니다.", Toast.LENGTH_SHORT).show() }

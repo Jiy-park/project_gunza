@@ -5,14 +5,27 @@
 
     <data>
         <variable
+            name="activity"
+            type="com.example.project_gunza.post_viewer.StudyGroupPost" />
+        <variable
+            name="likePost"
+            type="Boolean" />
+        <variable
+            name="isAuthor"
+            type="Boolean" />
+        <variable
+            name="modifyMode"
+            type="Boolean" />
+        <variable
             name="post"
             type="com.example.project_gunza.data_class.PostStruct" />
         <variable
             name="author"
-            type="com.example.project_gunza.data_class.PostAuthorStruct" />
+            type="com.example.project_gunza.data_class.SimpleUserStruct" />
         <variable
             name="commentCount"
             type="Integer" />
+        <import type="android.view.View"/>
     </data>
 
     <LinearLayout
@@ -31,56 +44,58 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:orientation="vertical"
                     android:padding="15dp">
-
                     <TextView
-                        android:id="@+id/textView6"
-                        android:layout_width="0dp"
+                        android:id="@+id/tvPostTitle"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/kopup_d_bold"
                         android:gravity="center_vertical"
                         android:text="@{post.postTitle}"
+                        android:visibility="@{!modifyMode ? View.VISIBLE : View.GONE}"
                         android:textColor="@color/black"
                         android:textSize="18sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
                         tools:text="게시글 타이틀" />
-
+                    <EditText
+                        android:id="@+id/editPostTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/kopup_d_bold"
+                        android:gravity="center_vertical"
+                        android:singleLine="true"
+                        android:background="@color/colorLemonGreen"
+                        android:hint="@{post.postTitle}"
+                        android:text="@{post.postTitle}"
+                        android:textColorHint="@color/colorHintText"
+                        android:visibility="@{modifyMode ? View.VISIBLE : View.GONE}"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        tools:hint="게시글 타이틀"
+                        android:inputType="text" />
                     <TextView
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/kopup_d_medium"
                         android:gravity="center_vertical"
                         android:text="@{author.userName + ` ` + author.userUnit + ` Lv.` + Integer.toString(author.userExp/5)}"
                         android:textColor="@color/black"
                         android:textSize="13sp"
-                        app:layout_constraintBottom_toTopOf="@+id/textView5"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView6"
                         tools:text="퍼팬 강원대학교 Lv.32" />
-
                     <TextView
                         android:id="@+id/textView5"
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/kopup_d_medium"
                         android:gravity="center_vertical"
                         android:text="@{post.createdAt.replace(`_`, `  `)}"
                         android:textColor="@color/black"
                         android:textSize="13sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
                         tools:text="2023-06-27-19:33:23" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
+                </LinearLayout>
                 <View
                     android:id="@+id/divider1"
                     android:layout_width="match_parent"
@@ -94,8 +109,25 @@
                     android:minHeight="200dp"
                     android:padding="15dp"
                     android:text="@{post.content}"
+                    android:visibility="@{!modifyMode ? View.VISIBLE : View.GONE}"
                     android:textColor="@color/black"
                     tools:text="지용 보카 어저구 저쩌구~~~~~~" />
+
+                <EditText
+                    android:id="@+id/editPostContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorLemonGreen"
+                    android:fontFamily="@font/kopup_d_medium"
+                    android:gravity="start"
+                    android:hint="@{post.content}"
+                    android:minHeight="200dp"
+                    android:padding="15dp"
+                    android:text="@{post.content}"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/colorHintText"
+                    android:visibility="@{modifyMode ? View.VISIBLE : View.GONE}"
+                    tools:hint="지용 보카 어저구 저쩌구~~~~~~" />
 
                 <LinearLayout
                     android:id="@+id/btnLike"
@@ -103,13 +135,23 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:gravity="center_horizontal"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:onClick="@{activity::likePost}">
+
                     <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/ivHeart"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:src="@drawable/ic_silver_heart"
-                        android:layout_marginEnd="10dp"/>
+                        android:layout_marginEnd="10dp"
+                        android:visibility="@{likePost ? View.VISIBLE : View.GONE}"
+                        android:src="@drawable/ic_heart" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="10dp"
+                        android:visibility="@{!likePost ? View.VISIBLE : View.GONE}"
+                        android:src="@drawable/ic_silver_heart" />
+
                     <TextView
                         android:id="@+id/tvLike"
                         android:layout_width="wrap_content"
@@ -137,9 +179,33 @@
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="10dp"
                         android:fontFamily="@font/kopup_d_medium"
+                        android:text="확인"
+                        android:textColor="@color/black"
+                        android:textSize="15sp"
+                        android:visibility="@{modifyMode ? View.VISIBLE : View.GONE}"
+                        android:onClick="@{activity::completeModify}"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="15dp"
+                        android:fontFamily="@font/kopup_d_medium"
+                        android:text="취소"
+                        android:textColor="@color/black"
+                        android:textSize="15sp"
+                        android:visibility="@{modifyMode ? View.VISIBLE : View.GONE}"
+                        android:onClick="@{activity::cancelModify}"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="10dp"
+                        android:fontFamily="@font/kopup_d_medium"
                         android:text="수정"
                         android:textColor="@color/black"
-                        android:textSize="15sp" />
+                        android:textSize="15sp"
+                        android:visibility="@{(isAuthor &amp;&amp; !modifyMode) ? View.VISIBLE : View.GONE}"
+                        android:onClick="@{activity::modifyPost}"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -148,7 +214,9 @@
                         android:fontFamily="@font/kopup_d_medium"
                         android:text="삭제"
                         android:textColor="@color/black"
-                        android:textSize="15sp" />
+                        android:textSize="15sp"
+                        android:visibility="@{(isAuthor &amp;&amp; !modifyMode) ? View.VISIBLE : View.GONE}"
+                        android:onClick="@{activity::deletePost}"/>
                 </LinearLayout>
 
                 <View
@@ -170,10 +238,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:nestedScrollingEnabled="true"
+                    tools:listitem="@layout/item_post_comment_viewer"
                     android:paddingHorizontal="15dp" />
 
                 <EditText
-                    android:id="@+id/editContent"
+                    android:id="@+id/editCommentContent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="15dp"
@@ -196,7 +265,8 @@
                     android:fontFamily="@font/kopup_d_medium"
                     android:text="등록"
                     android:textColor="@color/black"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    android:onClick="@{activity::createComment}"/>
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
     </LinearLayout>

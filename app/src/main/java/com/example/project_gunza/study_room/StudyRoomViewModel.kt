@@ -16,7 +16,6 @@ class StudyRoomViewModel: ViewModel() {
     val roomInfo: LiveData<List<SimpleStudyGroupStruct>>
         get() = _roomInfo
 
-
     /** 데이터를 불러 올 때 최신 게시글이 등록된 그룹 순으로 정렬해서 불러옴*/
     init {
         Log.d("LOG_CHECK", "StudyRoomViewModel :: () -> init viewModel")

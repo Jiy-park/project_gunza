@@ -62,6 +62,12 @@ class StudyGroup : AppCompatActivity() {
             }
         }
 
+    override fun onRestart() {
+        super.onRestart()
+        Log.d("LOG_CHECK", "StudyGroup :: onRestart() -> ")
+        studyGroupViewModel.refresh()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -185,6 +191,7 @@ class StudyGroup : AppCompatActivity() {
 
     /** * 스터디 그룹을 찾기 못함 : 인텐트로 넘어오지 않음*/
     private fun groupNotFound(){
-//        TODO("페이지 못찾았을 때")
+        Toast.makeText(context, "그룹을 찾을 수 없습니다", Toast.LENGTH_SHORT).show()
+        finish()
     }
 }

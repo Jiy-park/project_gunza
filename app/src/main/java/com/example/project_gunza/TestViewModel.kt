@@ -48,8 +48,4 @@ class TestViewModel(userId: String): ViewModel() {
     init {
         _userInfo = userRepo.userInfo
     }
-
-    fun updateUserName(newName: String){
-
-    }
 }

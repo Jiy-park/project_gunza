@@ -19,6 +19,8 @@ object INTENT {
     }
 
     object POST{
+        /** = "postId"*/
+        const val ID = "postId"
         /** = "createPost" */
         const val CREATE_POST = "createPost"
 

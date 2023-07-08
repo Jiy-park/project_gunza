@@ -1,10 +1,12 @@
 package com.example.project_gunza.dialog
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.widget.*
 import com.example.project_gunza.R
 import com.example.project_gunza.common.VALUE
+import com.example.project_gunza.databinding.DialogDeletePostInfoBinding
 import com.example.project_gunza.databinding.DialogSearchStudyGroupBinding
 import com.example.project_gunza.databinding.DialogSortStudyGroupBinding
 
@@ -92,5 +94,31 @@ class DialogFunc {
             }
         }
 
+        /** 게시글의 정보 삭제 다이얼로그
+         * @param isPost true -> 게시글 삭제 , false -> 댓글 삭제*/
+        @SuppressLint("SetTextI18n")
+        fun deletePostInfoDialog(context: Context, isPost: Boolean = true, callback: ()->Unit){
+            val dialog = DialogFrame(context)
+            val view = LayoutInflater.from(context).inflate(R.layout.dialog_delete_post_info, null)
+            if(!isPost){
+                val binding = DialogDeletePostInfoBinding.bind(view)
+                binding.tvMainWarn.text = "댓글을 삭제 하시겠습니까?"
+                binding.tvSubWarn.text = "\n※ 삭제된 댓글은 다시 불러올 수 없습니다."
+            }
+
+            with(dialog){
+                title = "삭제"
+                leftBtnName = "확인"
+                rightBtnName = "취소"
+
+                setLeftBtnClickListener {
+                    callback()
+                    dismiss()
+                }
+                this.view = view
+                initDialog()
+            }
+        }
     }
+
 }

@@ -27,7 +27,7 @@
         android:background="?android:attr/listDivider" />
 
     <EditText
-        android:id="@+id/editContent"
+        android:id="@+id/editCommentContent"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"

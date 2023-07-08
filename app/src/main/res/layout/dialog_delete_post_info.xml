@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <TextView
+        android:id="@+id/tvMainWarn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="게시글을 삭제 하시겠습니까?"
+        android:textColor="@color/colorWarnRed"
+        android:fontFamily="@font/kopup_d_bold"
+        android:textSize="15sp"/>
+    <TextView
+        android:id="@+id/tvSubWarn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="\n※ 삭제된 게시글은 다시 불러올 수 없습니다."
+        android:textColor="@color/colorWarnRed"
+        android:fontFamily="@font/kopup_d_medium"
+        android:textSize="11sp"/>
+</LinearLayout>

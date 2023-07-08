@@ -8,7 +8,7 @@
             type="com.example.project_gunza.data_class.PostStruct" />
         <variable
             name="author"
-            type="com.example.project_gunza.data_class.PostAuthorStruct" />
+            type="com.example.project_gunza.data_class.SimpleUserStruct" />
     </data>
 
     <LinearLayout

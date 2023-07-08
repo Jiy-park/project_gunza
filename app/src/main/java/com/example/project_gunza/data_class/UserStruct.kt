@@ -15,3 +15,10 @@ data class UserStruct(
     val createComment: MutableList<String> = mutableListOf(),
     val userLikePost: MutableList<String> = mutableListOf(),
 )
+
+data class SimpleUserStruct(
+    val userId: String = "",
+    val userName: String = "",
+    val userUnit: String = "",
+    val userExp: Int = VALUE.LEVEL_CONVERT_VAL,
+)

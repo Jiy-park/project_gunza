@@ -3,7 +3,7 @@ package com.example.project_gunza.study_group
 import android.annotation.SuppressLint
 import android.util.Log
 import androidx.lifecycle.*
-import com.example.project_gunza.data_class.PostAuthorStruct
+import com.example.project_gunza.data_class.SimpleUserStruct
 import com.example.project_gunza.data_class.PostStruct
 import kotlinx.coroutines.*
 
@@ -12,34 +12,21 @@ import kotlinx.coroutines.*
 @SuppressLint("SimpleDateFormat")
 class StudyGroupViewModel(private val groupId: String): ViewModel() {
     private var studyGroupRepository = StudyGroupRepository()
-    private var mostRecentPostTimeStamp = ""
 
     private var _groupInfo = MutableLiveData<List<PostStruct>>()
     val groupInfo: LiveData<List<PostStruct>>
         get() = _groupInfo
 
-    var authorInfo = listOf<PostAuthorStruct>()
+    var authorInfo = listOf<SimpleUserStruct>()
 
     init {
         Log.d("LOG_CHECK", "StudyGroupViewModel :: () -> init viewModel")
-        viewModelScope.launch(Dispatchers.IO) {
-            studyGroupRepository.fetchData(groupId)
-            withContext(Dispatchers.Main){
-                authorInfo = studyGroupRepository.authorInfo
-                _groupInfo.value = studyGroupRepository.groupInfo
-
-                if(_groupInfo.value?.isNotEmpty() == true){
-                    _groupInfo.value!![0].createdAt.let { timeStamp ->
-                        mostRecentPostTimeStamp = timeStamp
-                    }
-                }
-            }
-        }
+        refresh()
     }
 
     fun defaultValue(){
         authorInfo = studyGroupRepository.authorInfo
-        _groupInfo.value = studyGroupRepository.groupInfo
+        _groupInfo.value = studyGroupRepository.groupPostInfo
     }
 
     /** 그룹 내 게시글 검색
@@ -73,14 +60,10 @@ class StudyGroupViewModel(private val groupId: String): ViewModel() {
 
     fun refresh(){
         viewModelScope.launch(Dispatchers.IO) {
-            studyGroupRepository.fetchData(groupId, mostRecentPostTimeStamp)
+            studyGroupRepository.fetchData(groupId)
             withContext(Dispatchers.Main){
                 authorInfo = studyGroupRepository.authorInfo
-                _groupInfo.value = studyGroupRepository.groupInfo
-
-                _groupInfo.value?.get(0)?.createdAt?.let { timeStamp ->
-                    mostRecentPostTimeStamp = timeStamp
-                }
+                _groupInfo.value = studyGroupRepository.groupPostInfo
             }
         }
     }

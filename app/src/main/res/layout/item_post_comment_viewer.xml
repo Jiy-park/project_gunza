@@ -3,9 +3,24 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="android.view.View"/>
+        <variable
+            name="holder"
+            type="com.example.project_gunza.post_viewer.PostCommentAdapter.Holder" />
+        <variable
+            name="isAuthor"
+            type="Boolean" />
+        <variable
+            name="modifyMode"
+            type="Boolean" />
         <variable
             name="comment"
-            type="com.example.project_gunza.data_class.Comment" />
+            type="com.example.project_gunza.data_class.CommentStruct" />
+        <variable
+            name="author"
+            type="com.example.project_gunza.data_class.SimpleUserStruct" />
+        <import type="com.example.project_gunza.common.VALUE"
+            alias="V"/>
     </data>
 
     <LinearLayout
@@ -17,23 +32,81 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:text="기기 강원대학교 Lv.16"
-            android:text="@{comment.authorName + ` ` + comment.authorUnit + ` Lv.` + Integer.toString(comment.authorLevel)}"
+            android:text="@{author.userName + ` ` + author.userUnit + ` Lv.` + Integer.toString(author.userExp/V.LEVEL_CONVERT_VAL)}"
             android:fontFamily="@font/kopup_d_bold"
+            android:clickable="true"
             android:textColor="@color/black"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="@{!modifyMode ? View.VISIBLE : View.GONE}"
             tools:text="그렇게 어쩌구 저쩌구~"
             android:text="@{comment.commentBody}"
             android:fontFamily="@font/kopup_d_medium"
             android:textColor="@color/black"/>
-        <TextView
+        <EditText
+            android:id="@+id/editCommentContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:text="2023-06-27 19:38:15"
-            android:text="@{comment.createdAt}"
+            android:visibility="@{modifyMode ? View.VISIBLE : View.GONE}"
+            tools:text="그렇게 어쩌구 저쩌구~"
+            android:text="@{comment.commentBody}"
+            android:hint="@{comment.commentBody}"
+            android:background="@color/colorLemonGreen"
+            android:textColorHint="@color/colorHintText"
             android:fontFamily="@font/kopup_d_medium"
-            android:textColor="#dadada"/>
+            android:textColor="@color/black"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="8"
+                tools:text="2023.06.27 19:38:15"
+                android:text="@{comment.createdAt}"
+                android:fontFamily="@font/kopup_d_medium"
+                android:textColor="#dadada"/>
+            <TextView
+                android:id="@+id/completeModify"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="@{modifyMode ? View.VISIBLE : View.GONE}"
+                android:text="확인"
+                android:layout_marginHorizontal="10dp"
+                android:gravity="end"
+                android:fontFamily="@font/kopup_d_medium"
+                android:clickable="true"/>
+            <TextView
+                android:id="@+id/cancelModify"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="@{modifyMode? View.VISIBLE : View.GONE}"
+                android:text="취소"
+                android:gravity="end"
+                android:fontFamily="@font/kopup_d_medium"
+                android:clickable="true"/>
+            <TextView
+                android:id="@+id/commentModify"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="@{(isAuthor &amp;&amp; !modifyMode) ? View.VISIBLE : View.GONE}"
+                android:text="수정"
+                android:layout_marginHorizontal="10dp"
+                android:gravity="end"
+                android:fontFamily="@font/kopup_d_medium"
+                android:clickable="true"/>
+            <TextView
+                android:id="@+id/completeDelete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="@{(isAuthor &amp;&amp; !modifyMode) ? View.VISIBLE : View.GONE}"
+                android:text="삭제"
+                android:gravity="end"
+                android:fontFamily="@font/kopup_d_medium"
+                android:clickable="true"/>
+        </LinearLayout>
     </LinearLayout>
 </layout>
