@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+    <EditText
+        android:id="@+id/editId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:drawableStart="@drawable/ic_user"
+        android:drawablePadding="10dp"
+        android:fontFamily="@font/kopup_d_medium"
+        android:textSize="13sp"
+        android:backgroundTint="@color/black"
+        android:hint="아이디" />
+    <TextView
+        android:id="@+id/warnIdEmpty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:paddingStart="5dp"
+        android:text="아이디를 입력해야 합니다."
+        android:fontFamily="@font/kopup_d_medium"
+        android:textSize="13sp"
+        android:textColor="@color/colorWarnRed"
+        android:drawablePadding="10dp"
+        tools:ignore="RtlSymmetry"
+        app:drawableLeftCompat="@drawable/ic_warning" />
+
+    <EditText
+        android:id="@+id/editPw"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:singleLine="true"
+        android:drawableStart="@drawable/ic_pw"
+        android:drawablePadding="10dp"
+        android:fontFamily="@font/kopup_d_medium"
+        android:textSize="13sp"
+        android:backgroundTint="@color/black"
+        android:hint="비밀번호" />
+
+    <TextView
+        android:id="@+id/warnInfoCheck"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:paddingStart="5dp"
+        android:text="정보가 일치하지 않습니다."
+        android:fontFamily="@font/kopup_d_medium"
+        android:textSize="13sp"
+        android:textColor="@color/colorWarnRed"
+        android:drawablePadding="10dp"
+        tools:ignore="RtlSymmetry"
+        app:drawableLeftCompat="@drawable/ic_warning" />
+</LinearLayout>

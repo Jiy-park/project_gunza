@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="simple"
+            type="com.example.project_gunza.data_class.SimpleStudyGroupStruct" />
+        <variable
+            name="groupRank1Unit"
+            type="String" />
+        <variable
+            name="groupRank2Unit"
+            type="String" />
+        <variable
+            name="groupRank3Unit"
+            type="String" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".study_group.StudyGroup">
+
+        <include layout="@layout/common_main_top_panel"
+            android:id="@+id/layerTopPanel"/>
+
+        <TextView
+            android:id="@+id/tvGroupTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorFrogGreen"
+            android:paddingEnd="28dp"
+            android:gravity="center"
+            tools:text="그룹 타이틀"
+            android:text="@{simple.groupTitle}"
+            android:textColor="@color/colorLemonGreen"
+            android:textSize="25sp"
+            android:fontFamily="@font/gunza_font_pixel"
+            app:drawableLeftCompat="@drawable/dot_particle_1_mini" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:paddingHorizontal="40dp"
+            android:background="@color/colorFrogGreen">
+
+            <TextView
+                android:id="@+id/tvRank1"
+                android:layout_width="0dp"
+                android:layout_height="70dp"
+                android:fontFamily="@font/gunza_font_pixel"
+                android:gravity="center"
+                android:text="1위"
+                android:textColor="@color/colorLemonGreen"
+                android:textSize="40sp"
+                android:visibility="@{groupRank1Unit == null ? View.GONE : View.VISIBLE}"
+                app:layout_constraintEnd_toStartOf="@+id/tvRank2"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvRank2"
+                android:layout_width="0dp"
+                android:layout_height="70dp"
+                android:fontFamily="@font/gunza_font_pixel"
+                android:gravity="center"
+                android:text="2위"
+                android:textColor="@color/colorLemonGreen"
+                android:textSize="40sp"
+                android:visibility="@{groupRank2Unit == null ? View.GONE : View.VISIBLE}"
+                app:layout_constraintEnd_toStartOf="@+id/tvRank3"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/tvRank1"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvRank3"
+                android:layout_width="0dp"
+                android:layout_height="70dp"
+                android:fontFamily="@font/gunza_font_pixel"
+                android:gravity="center"
+                android:text="3위"
+                android:textColor="@color/colorLemonGreen"
+                android:textSize="40sp"
+                android:visibility="@{groupRank3Unit == null ? View.GONE : View.VISIBLE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/tvRank2"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvRank11"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:fontFamily="@font/kopup_d_medium"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:text="@{groupRank1Unit}"
+                android:gravity="center"
+                android:maxLines="2"
+                android:visibility="@{tvRank1.visibility}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/tvRank1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvRank1"
+                tools:text="강원대학교1" />
+
+            <TextView
+                android:id="@+id/tvRank22"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="1dp"
+                android:fontFamily="@font/kopup_d_medium"
+                android:text="@{groupRank2Unit}"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:maxLines="2"
+                android:visibility="@{tvRank2.visibility}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/tvRank2"
+                app:layout_constraintStart_toEndOf="@+id/tvRank1"
+                app:layout_constraintTop_toBottomOf="@+id/tvRank2"
+                tools:text="강원대학교2" />
+
+            <TextView
+                android:id="@+id/tvRank33"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:fontFamily="@font/kopup_d_medium"
+                android:text="@{groupRank3Unit}"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:maxLines="2"
+                android:visibility="@{tvRank3.visibility}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/tvRank3"
+                app:layout_constraintStart_toEndOf="@+id/tvRank2"
+                app:layout_constraintTop_toBottomOf="@+id/tvRank3"
+                tools:text="강원대학교3" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="@color/colorFrogGreen"
+            android:paddingHorizontal="15dp"
+            android:drawableRight="@drawable/dot_particle_2_mini"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="5dp"
+            android:paddingBottom="10dp"
+            android:background="@color/colorFrogGreen"
+            android:orientation="horizontal">
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnSearch"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginHorizontal="3.5dp"
+                android:padding="10dp"
+                android:background="@color/colorLightGreen"
+                android:text="검색"
+                android:fontFamily="@font/gunza_font_pixel"
+                android:autoSizeTextType="uniform"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnCreate"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginHorizontal="3.5dp"
+                android:padding="10dp"
+                android:background="@color/colorLightGreen"
+                android:text="글쓰기"
+                android:fontFamily="@font/gunza_font_pixel"
+                android:autoSizeTextType="uniform"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnMyPost"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginHorizontal="3.5dp"
+                android:padding="10dp"
+                android:background="@color/colorLightGreen"
+                android:text="내글"
+                android:fontFamily="@font/gunza_font_pixel"
+                android:autoSizeTextType="uniform"/>
+        </LinearLayout>
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/heart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_heart"
+            android:layout_gravity="center_horizontal"
+            android:visibility="gone"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerviewStudyGroupPost"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:paddingTop="15dp"
+            android:paddingHorizontal="15dp"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnBackToMain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="돌아가기"
+            android:fontFamily="@font/gunza_font_pixel"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:background="@color/colorWoodBrown"
+            android:visibility="gone"
+            tools:visibility="visible"/>
+    </LinearLayout>
+</layout>

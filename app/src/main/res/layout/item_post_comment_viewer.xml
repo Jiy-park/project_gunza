@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="comment"
+            type="com.example.project_gunza.data_class.Comment" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="기기 강원대학교 Lv.16"
+            android:text="@{comment.authorName + ` ` + comment.authorUnit + ` Lv.` + Integer.toString(comment.authorLevel)}"
+            android:fontFamily="@font/kopup_d_bold"
+            android:textColor="@color/black"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="그렇게 어쩌구 저쩌구~"
+            android:text="@{comment.commentBody}"
+            android:fontFamily="@font/kopup_d_medium"
+            android:textColor="@color/black"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="2023-06-27 19:38:15"
+            android:text="@{comment.createdAt}"
+            android:fontFamily="@font/kopup_d_medium"
+            android:textColor="#dadada"/>
+
+    </LinearLayout>
+</layout>

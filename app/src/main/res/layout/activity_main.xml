@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="userViewModel"
+            type="com.example.project_gunza.data_class.UserStruct" />
+        <import type="com.example.project_gunza.common.VALUE"
+            alias="V"/>
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".Main">
+        <include layout="@layout/common_main_top_panel"
+            android:id="@+id/layerTopPanel"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:weightSum="3"
+            android:background="@color/colorFrogGreen"
+            android:orientation="horizontal">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="0dp"
+                android:layout_height="300dp"
+                android:layout_weight="0.7"
+                android:paddingBottom="180dp"
+                android:src="@drawable/dot_particle_1"/>
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:layout_weight="1.6"
+                android:layout_gravity="center"
+                android:src="@drawable/user_profile_default_image"
+                app:civ_circle_background_color="#dadada"
+                app:civ_border_width="5dp"
+                app:civ_border_color="@color/white"
+                app:civ_border_overlay="true"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorFrogGreen"
+            android:paddingTop="10dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginVertical="10dp"
+                tools:text="사용자 한마디"
+                android:text="@{userViewModel.userMsg}"
+                android:textSize="25sp"
+                android:fontFamily="@font/gunza_font_pixel"
+                android:textColor="@color/white"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                tools:text="유저 닉네임 | 유저 소속"
+                android:text="@{userViewModel.userName + ` | ` + userViewModel.userUnit}"
+                android:textSize="18sp"
+                android:fontFamily="@font/gunza_font_pixel"
+                android:textColor="@color/white"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                tools:text="유저 레벨(경험치)"
+                android:text="@{Integer.toString(userViewModel.userExp/V.LEVEL_CONVERT_VAL) + `(` +Integer.toString(userViewModel.userExp%V.LEVEL_CONVERT_VAL)+`)`}"
+                android:textSize="17sp"
+                android:fontFamily="@font/gunza_font_pixel"
+                android:textColor="@color/white"/>
+            <TextView
+                android:id="@+id/testAutoSignIn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="테스트 용 자동 로그인 OK"
+                android:textSize="17sp"
+                android:fontFamily="@font/gunza_font_pixel"
+                android:textColor="@color/white"
+                />
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginVertical="15dp"
+                android:paddingStart="300dp"
+                android:src="@drawable/dot_particle_2"
+                tools:ignore="RtlSymmetry" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="20dp"
+            android:paddingHorizontal="15dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="내 스터디 그룹"
+                android:fontFamily="@font/kopup_d_medium"
+                android:textColor="#000000"
+                android:textSize="15sp"/>
+            <TextView
+                android:id="@+id/btnMoveStudyGroup"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="더보기"
+                android:textAlignment="viewEnd"
+                android:drawableRight="@drawable/ic_more"
+                android:fontFamily="@font/kopup_d_medium"
+                android:textColor="#000000"
+                android:textSize="15sp"
+                tools:ignore="RtlCompat" />
+        </LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerviewMyGroup"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:paddingHorizontal="7.5dp"
+            tools:listitem="@layout/common_group_viewer"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="3"
+            tools:itemCount="3"
+            android:layout_gravity="center_horizontal"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnMoveToGunzaInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="기타 자기개발 정보 ▶"
+            android:fontFamily="@font/gunza_font_pixel"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:background="@color/colorWoodBrown"
+            tools:visibility="visible"/>
+    </LinearLayout>
+</layout>
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:paddingHorizontal="7.5dp"-->
+<!--            android:orientation="horizontal">-->
+
+<!--            <include-->
+<!--                android:id="@+id/group1"-->
+<!--                layout="@layout/common_group_viewer"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="1" />-->
+
+<!--            <include layout="@layout/common_group_viewer"-->
+<!--                android:id="@+id/group2"-->
+<!--                android:layout_weight="1"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content" />-->
+<!--            <include layout="@layout/common_group_viewer"-->
+<!--                android:id="@+id/group3"-->
+<!--                android:layout_weight="1"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content" />-->
+<!--        </LinearLayout>-->

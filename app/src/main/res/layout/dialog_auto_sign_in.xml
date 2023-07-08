@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="자동 로그인을 사용하시겠습니까?"
+        android:fontFamily="@font/kopup_d_bold"
+        android:textSize="15sp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="\n※자동 로그인 설정은 메인화면의\n\t\t우측 상단 설정 아이콘을 눌러 변경할 수 있습니다."
+        android:fontFamily="@font/kopup_d_medium"
+        android:textSize="11sp"/>
+</LinearLayout>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".gunza_info.Course">
+    <include layout="@layout/common_main_top_panel"
+        android:id="@+id/layerTopPanel"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <TextView
+        android:id="@+id/tvActivityTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorFrogGreen"
+        android:fontFamily="@font/gunza_font_pixel"
+        android:gravity="center"
+        android:text="대학별 원격강의"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:drawableLeftCompat="@drawable/dot_particle_1"
+        app:drawableRightCompat="@drawable/dot_particle_2"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layerTopPanel" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorFrogGreen"
+        android:orientation="horizontal"
+        android:paddingHorizontal="5dp"
+        android:paddingBottom="10dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvActivityTitle">
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnSearch"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="3.5dp"
+            android:layout_weight="1"
+            android:autoSizeTextType="uniform"
+            android:background="@color/colorLightGreen"
+            android:fontFamily="@font/gunza_font_pixel"
+            android:padding="10dp"
+            android:text="검색" />>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

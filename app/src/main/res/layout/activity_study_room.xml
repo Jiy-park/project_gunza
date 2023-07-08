@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".study_room.StudyRoom">
+    <include layout="@layout/common_main_top_panel"
+        android:id="@+id/layerTopPanel"/>
+
+    <TextView
+        android:id="@+id/tvActivityTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorFrogGreen"
+        android:gravity="center"
+        android:text="스터디룸"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        android:fontFamily="@font/gunza_font_pixel"
+        app:drawableLeftCompat="@drawable/dot_particle_1"
+        app:drawableRightCompat="@drawable/dot_particle_2" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="5dp"
+        android:paddingBottom="10dp"
+        android:background="@color/colorFrogGreen"
+        android:orientation="horizontal">
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnSearch"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="3.5dp"
+            android:padding="10dp"
+            android:background="@color/colorLightGreen"
+            android:text="검색"
+            android:fontFamily="@font/gunza_font_pixel"
+            android:autoSizeTextType="uniform"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnCreate"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="3.5dp"
+            android:padding="10dp"
+            android:background="@color/colorLightGreen"
+            android:text="생성"
+            android:fontFamily="@font/gunza_font_pixel"
+            android:autoSizeTextType="uniform"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnSort"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="3.5dp"
+            android:padding="10dp"
+            android:background="@color/colorLightGreen"
+            android:text="정렬"
+            android:fontFamily="@font/gunza_font_pixel"
+            android:autoSizeTextType="uniform"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvSortedBy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="최신순"
+        android:fontFamily="@font/kopup_d_medium"
+        android:textSize="15sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="15dp"
+        android:layout_marginHorizontal="15dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerviewStudyRoom"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingHorizontal="7.5dp"/>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnBackToMain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="돌아가기"
+        android:fontFamily="@font/gunza_font_pixel"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:background="@color/colorWoodBrown"
+        android:visibility="invisible"
+        tools:visibility="visible"/>
+</LinearLayout>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="groupTitle"
+            type="String" />
+        <variable
+            name="groupRank_1_Unit"
+            type="String" />
+        <variable
+            name="groupRank_2_Unit"
+            type="String" />
+        <variable
+            name="groupRank_3_Unit"
+            type="String" />
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:paddingHorizontal="7.5dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="129dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            tools:text="테스트 그룹"
+            android:text="@{groupTitle}"
+            android:maxLines="2"
+            android:fontFamily="@font/kopup_d_medium"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:background="@color/colorLemonGreen"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:gravity="start|center"
+            android:ellipsize="end"
+            android:singleLine="true"
+            tools:text="1위 팀명sdafasfasfasdfasf"
+            android:text="@{groupRank_1_Unit}"
+            android:fontFamily="@font/kopup_d_medium"
+            android:textSize="14sp"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:gravity="start|center"
+            android:ellipsize="end"
+            android:singleLine="true"
+            tools:text="2위 팀명"
+            android:text="@{groupRank_2_Unit}"
+            android:fontFamily="@font/kopup_d_medium"
+            android:textSize="14sp"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:gravity="start|center"
+            android:ellipsize="end"
+            android:singleLine="true"
+            tools:text="3위 팀명"
+            android:text="@{groupRank_3_Unit}"
+            android:fontFamily="@font/kopup_d_medium"
+            android:textSize="14sp"
+            android:textColor="@color/black"/>
+
+    </LinearLayout>
+</layout>

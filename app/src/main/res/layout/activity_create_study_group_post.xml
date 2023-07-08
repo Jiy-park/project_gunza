@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".study_group.CreateStudyGroupPost">
+    <include layout="@layout/common_main_top_panel"
+        android:id="@+id/layerTopPanel"/>
+
+    <EditText
+        android:id="@+id/editTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:inputType="text"
+        android:singleLine="true"
+        android:hint="제목을 입력하세요."
+        android:textColorHint="@color/colorHintText"
+        android:fontFamily="@font/kopup_d_medium"
+        android:backgroundTint="@android:color/transparent"/>
+    <View
+        android:id="@+id/divider1"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="?android:attr/listDivider" />
+
+    <EditText
+        android:id="@+id/editContent"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="15dp"
+        android:gravity="start"
+        android:inputType="textMultiLine"
+        android:hint="내용을 입력하세요."
+        android:textSize="15sp"
+        android:textColorHint="@color/colorHintText"
+        android:fontFamily="@font/kopup_d_medium"
+        android:backgroundTint="@android:color/transparent"/>
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="?android:attr/listDivider" />
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnDone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:background="@color/white"
+        android:text="등록하기"
+        android:fontFamily="@font/gunza_font_pixel"
+        android:textSize="20sp"
+        android:textColor="@color/colorWoodBrown"/>
+</LinearLayout>

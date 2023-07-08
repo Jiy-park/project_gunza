@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@drawable/ic_app"
+        android:label="GUNZA"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Project_gunza"
+        tools:targetApi="31">
+        <activity
+            android:name=".Library"
+            android:exported="false" />
+        <activity
+            android:name=".Course"
+            android:exported="false" />
+        <activity
+            android:name=".gunza_info.CertificateMoreInfo"
+            android:exported="false" />
+        <activity
+            android:name=".gunza_info.Certificate"
+            android:exported="false" />
+        <activity
+            android:name=".gunza_info.GunzaInfo"
+            android:exported="false" />
+        <activity
+            android:name=".TestActivity2"
+            android:exported="false" />
+        <activity
+            android:name=".TestActivity"
+            android:exported="false" />
+        <activity
+            android:name=".study_group.CreateStudyGroupPost"
+            android:exported="false" />
+        <activity
+            android:name=".post_viewer.StudyGroupPost"
+            android:exported="false" />
+        <activity
+            android:name=".study_group.StudyGroup"
+            android:exported="false" />
+        <activity
+            android:name=".study_room.StudyRoom"
+            android:exported="false" />
+        <activity
+            android:name=".Main"
+            android:exported="false" />
+        <activity
+            android:name=".sign.Sign"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="47dp"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/groupName"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="8"
+            tools:text="그룹 1"
+            android:fontFamily="@font/kopup_d_medium"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:gravity="center_vertical"/>
+        <CheckBox
+            android:id="@+id/checkGroup"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:buttonTint="@color/colorFrogGreen"
+            tools:checked="false" />
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="?android:attr/listDivider" />
+</LinearLayout>
+<!--    <CheckedTextView-->
+<!--        android:id="@+id/checkGroup"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:paddingVertical="10dp"-->
+<!--        android:fontFamily="@font/kopup_d_medium"-->
+<!--        android:textSize="15sp"-->
+<!--        android:ellipsize="end"-->
+<!--        android:gravity="center"-->
+<!--        android:paddingEnd="30dp"-->
+<!--        android:checkMark="?android:attr/listChoiceIndicatorMultiple"-->
+<!--        android:checkMarkTint="@color/colorFrogGreen"-->
+<!--        android:checked="true"-->
+<!--        tools:text="유저가 만든 그룹 1"/>-->
