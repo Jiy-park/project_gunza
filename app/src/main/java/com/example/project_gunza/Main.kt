@@ -32,15 +32,17 @@ class Main : AppCompatActivity() {
     private lateinit var studyRoomViewModel: StudyRoomViewModel
     private lateinit var userId: String
 
-    fun test(){
+    private var editMode = false
+
+    private fun autoSignIn(){
         binding.testAutoSignIn.apply {
-            if(pref.getAutoSignIn()) { this.text = "테스트용 자동 로그인 O"}
-            else { this.text = "테스트용 자동 로그인 X" }
+            if(pref.getAutoSignIn()) { this.text = "자동 로그인: O"}
+            else { this.text = "자동 로그인: X" }
             this.setOnClickListener {
                 DialogSignFunc.questionAutoSign(context){ answer ->
                     pref.setAutoLogIn(answer)
-                    if(answer) { this.text = "테스트용 자동 로그인 O" }
-                    else {  this.text = "테스트용 자동 로그인 X" }
+                    if(answer) { this.text = "자동 로그인: O" }
+                    else {  this.text = "자동 로그인: X" }
                 }
             }
         }
@@ -56,7 +58,7 @@ class Main : AppCompatActivity() {
         setViewEvent()
         setViewModel()
 
-        test()
+//        test()
         binding.recyclerviewMyGroup.apply {
             layoutManager = GridLayoutManager(context, VALUE.NUM_OF_VIEW_GRID)
             adapter = userCreateGroupAdapter
@@ -97,34 +99,64 @@ class Main : AppCompatActivity() {
     /** * 뷰 설정*/
     private fun setView(){
         binding.layerTopPanel.btnBack.visibility = View.INVISIBLE
-        binding.layerTopPanel.btnSetting.visibility = View.VISIBLE
+        binding.layerTopPanel.btnSignOut.visibility = View.VISIBLE
+        binding.editMsg = false
+        autoSignIn()
     }
 
     /** * 뷰 이벤트 설정*/
     private fun setViewEvent(){
-        binding.layerTopPanel.btnSetting.setOnClickListener {
-//            TODO("임시로 로그아웃 기능만 추가 나중에 더 추가해야함")
-//            val intent = Intent(this@Main, ModifyProfile::class.java)
-//            startActivity(intent)
+        binding.layerTopPanel.btnSignOut.setOnClickListener { signOut() }
+        binding.btnMoveStudyGroup.setOnClickListener { moveToStudyGroup() }
+        binding.btnMoveToGunzaInfo.setOnClickListener { moveToGunzaInfo() }
 
-            DialogSignFunc.signOut(context){
-                userViewModel.deleteUserRepo()
-                val intent = Intent(context, Sign::class.java).apply {
-                    putExtra(INTENT.SIGN.OUT, true)
-                }
-                startActivity(intent)
-                finish()
+        binding.ivEditUserMsg.setOnClickListener { editUserMsg() }
+        binding.ivCompleteUserMsg.setOnClickListener { completeUserMsg() }
+        binding.ivEditUserName.setOnClickListener { editUserName() }
+        binding.ivCompleteUserName.setOnClickListener { completeUserName() }
+    }
+
+    private fun signOut(){
+        DialogSignFunc.signOut(context){
+            userViewModel.deleteUserRepo()
+            val intent = Intent(context, Sign::class.java).apply {
+                putExtra(INTENT.SIGN.OUT, true)
             }
-        }
-
-        binding.btnMoveStudyGroup.setOnClickListener {
-            val intent = Intent(this@Main, StudyRoom::class.java)
             startActivity(intent)
-        }
-
-        binding.btnMoveToGunzaInfo.setOnClickListener {
-            val intent = Intent(context, GunzaInfo::class.java)
-            startActivity(intent)
+            finish()
         }
     }
+
+    private fun moveToGunzaInfo(){
+        val intent = Intent(context, GunzaInfo::class.java)
+        startActivity(intent)
+    }
+
+    private fun moveToStudyGroup(){
+        val intent = Intent(this@Main, StudyRoom::class.java)
+        startActivity(intent)
+    }
+
+    private fun editUserName(){
+        binding.editName = true
+        binding.editNewMsg.requestFocus()
+    }
+
+    private fun editUserMsg(){
+        binding.editMsg = true
+        binding.editNewMsg.requestFocus()
+    }
+
+    private fun completeUserName(){
+        val newName = binding.editNewName.text.toString()
+        userViewModel.updateUserInfo(FIELD.USER.NAME, newName, FIELD.TYPE.NORMAL, isRemove = false)
+        binding.editName = false
+    }
+
+    private fun completeUserMsg(){
+        val newMsg = binding.editNewMsg.text.toString()
+        userViewModel.updateUserInfo(FIELD.USER.MSG, newMsg, FIELD.TYPE.NORMAL, isRemove = false)
+        binding.editMsg = false
+    }
+
 }

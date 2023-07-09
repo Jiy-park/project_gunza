@@ -41,4 +41,21 @@ object INTENT {
         /** = "pass"*/
         const val PASS = "pass"
     }
+
+    object OFFICER{
+        /** "officerSchoolIs"*/
+        const val IS = "officerSchoolIs"
+
+        /** = "armyOfficerSchool"*/
+        const val ARMY = "armyOfficerSchool"
+
+        /** = "airForceOfficerSchool"*/
+        const val AIR = "airForceOfficerSchool"
+
+        /** = "navyOfficerSchool"*/
+        const val NAVY = "navyOfficerSchool"
+
+        /** = "armyROTC"*/
+        const val ROTC = "armyROTC"
+    }
 }

@@ -164,7 +164,10 @@ class StudyGroup : AppCompatActivity() {
             }
             else { intent.getParcelableExtra(INTENT.GROUP.SSGS)  }
 
-        groupInfo?.let {
+        Log.d("LOG_CHECK", "StudyGroup :: getSimpleStudyGroupData() -> groupInfo1 :$groupInfo 1")
+
+        if(groupInfo == null){ groupNotFound() }
+        else{
             binding.simple = groupInfo
             rankingTop3 =
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -175,7 +178,7 @@ class StudyGroup : AppCompatActivity() {
             rankingTop3.first?.let { binding.groupRank1Unit = it }
             rankingTop3.second?.let { binding.groupRank2Unit = it }
             rankingTop3.third?.let { binding.groupRank3Unit = it }
-        }?:run { groupNotFound() }
+        }
     }
 
     /** 유저가 그룹을 방문한 시간을 기록*/
@@ -192,6 +195,6 @@ class StudyGroup : AppCompatActivity() {
     /** * 스터디 그룹을 찾기 못함 : 인텐트로 넘어오지 않음*/
     private fun groupNotFound(){
         Toast.makeText(context, "그룹을 찾을 수 없습니다", Toast.LENGTH_SHORT).show()
-        finish()
+//        finish()
     }
 }

@@ -20,11 +20,10 @@ class GunzaInfo : AppCompatActivity() {
         btnBackToMain.setOnClickListener { finish() }
         examCertificate.setOnClickListener { moveToCertificate(INTENT.CERTIFICATE.EXAM) } // 응시순 자격증 추천
         passCertificate.setOnClickListener { moveToCertificate(INTENT.CERTIFICATE.PASS) } // 합격순 자격증 추천
-        remoteCourseSubjects.setOnClickListener { moveToCourse() } // 대학변 원격 강의 개설 과목 확인
-        defenseLibraryBooks.setOnClickListener { moveToLibrary() } // 국방 전자 도서관 도서 정보
-        militaryResorts.setOnClickListener { moveToResort() } // 군 복지 휴양 시설
-        recreationalNearbyMines.setOnClickListener { moveToRecreational() } // 휴양 시설 주변 관광지
-        soldierBenefits.setOnClickListener { moveToBenefit() } // 병사 확인 혜택 정보
+        remoteCourse.setOnClickListener { moveToCourse() } // 대학변 원격 강의 개설 과목 확인
+        remoteCoursePass.setOnClickListener { moveToCoursePass() } // 대학별 원격 강의 수료순 확인
+        army.setOnClickListener { moveToOfficerSchool(INTENT.OFFICER.ARMY) } // 육군 사관 학교 교육 과정
+        competitiveness.setOnClickListener { moveToOfficerCompetitiveness() } // 각군 사관 학교 입학 경쟁률
     }
 
     /** 자격증 추천
@@ -44,24 +43,23 @@ class GunzaInfo : AppCompatActivity() {
         startActivity(intent)
     }
 
-    /**  국방 전자 도서관 도서 정보*/
-    private fun moveToLibrary(){
-        val intent = Intent(this@GunzaInfo, Course::class.java)
+    /**  // 대학별 원격강의 수료순 확인*/
+    private fun moveToCoursePass(){
+        val intent = Intent(this@GunzaInfo, CoursePass::class.java)
         startActivity(intent)
     }
 
-    /** 군 복지 휴양 시설*/
-    private fun moveToResort(){
-
-    }
-
-    /** 휴양 시설 주변 관광지*/
-    private fun moveToRecreational(){
+    private fun moveToOfficerSchool(detail: String){
+        val intent = Intent(this@GunzaInfo, OfficerSchool::class.java).apply {
+            putExtra(INTENT.OFFICER.IS, detail)
+        }
+        startActivity(intent)
 
     }
 
     /** 병사 확인 혜택 정보*/
-    private fun moveToBenefit(){
-
+    private fun moveToOfficerCompetitiveness(){
+        val intent = Intent(this@GunzaInfo, OfficerCompetitiveness::class.java)
+        startActivity(intent)
     }
 }

@@ -56,4 +56,15 @@ object FIELD {
          * 1. FIELD.USER.VISIT + .${ssgs?.groupId}*/
         const val MAP = "map"
     }
+
+    object JSON{
+        /** 대학교 이름 = "1"*/
+        const val UNIVERSITY_NAME = "1"
+
+        /** 과목명 = "2"*/
+        const val SUBJECT_NAME = "2"
+
+        /** 학점 = "3"*/
+        const val CREDIT = "3"
+    }
 }

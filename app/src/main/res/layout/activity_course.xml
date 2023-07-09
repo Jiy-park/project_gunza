@@ -1,43 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".gunza_info.Course">
     <include layout="@layout/common_main_top_panel"
-        android:id="@+id/layerTopPanel"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        android:id="@+id/layerTopPanel"/>
 
     <TextView
-        android:id="@+id/tvActivityTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorFrogGreen"
         android:fontFamily="@font/gunza_font_pixel"
         android:gravity="center"
         android:text="대학별 원격강의"
-        android:textColor="@color/white"
+        android:textColor="@color/colorLemonGreen"
         android:textSize="25sp"
         app:drawableLeftCompat="@drawable/dot_particle_1"
-        app:drawableRightCompat="@drawable/dot_particle_2"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layerTopPanel" />
+        app:drawableRightCompat="@drawable/dot_particle_2"/>
+    <TextView
+        android:id="@+id/tvSearchResult"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorFrogGreen"
+        android:fontFamily="@font/gunza_font_pixel"
+        android:gravity="center|top"
+        tools:text="강원대 검색 결과"
+        android:visibility="gone"
+        android:textColor="@color/colorLemonGreen"
+        android:textSize="25sp"/>
 
     <LinearLayout
-        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorFrogGreen"
         android:orientation="horizontal"
         android:paddingHorizontal="5dp"
-        android:paddingBottom="10dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvActivityTitle">
+        android:paddingBottom="10dp">
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnSearch"
             android:layout_width="0dp"
@@ -47,7 +48,61 @@
             android:autoSizeTextType="uniform"
             android:background="@color/colorLightGreen"
             android:fontFamily="@font/gunza_font_pixel"
+            android:textColor="@color/colorWoodBrown"
             android:padding="10dp"
-            android:text="검색" />>
+            android:text="검색" />
     </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingVertical="10dp"
+        android:background="@color/colorLemonGreen">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:text="대학교"
+            android:gravity="center"
+            android:fontFamily="@font/gunza_font_pixel"
+            android:textColor="@color/colorWoodBrown"
+            android:textSize="25sp"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="6"
+            android:text="강의명"
+            android:gravity="center"
+            android:fontFamily="@font/gunza_font_pixel"
+            android:textColor="@color/colorWoodBrown"
+            android:textSize="25sp"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:text="학점"
+            android:gravity="center"
+            android:fontFamily="@font/gunza_font_pixel"
+            android:textColor="@color/colorWoodBrown"
+            android:textSize="25sp"/>
+    </LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerviewCourse"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingVertical="15dp"
+        tools:listitem="@layout/item_univ_course"
+        tools:itemCount="4"/>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnBackToMain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="돌아가기"
+        android:fontFamily="@font/gunza_font_pixel"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:background="@color/colorWoodBrown"
+        android:visibility="gone"
+        tools:visibility="visible"/>
+</LinearLayout>

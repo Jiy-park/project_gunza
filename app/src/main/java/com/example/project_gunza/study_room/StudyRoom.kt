@@ -60,15 +60,15 @@ class StudyRoom : AppCompatActivity() {
         binding.btnSearch.setOnClickListener { searchGroup() }
         binding.btnCreate.setOnClickListener { createStudyGroup() }
         binding.btnSort.setOnClickListener { sortStudyGroup() }
-        binding.btnBackToMain.setOnClickListener { backToMain(it) }
+        binding.btnBackToMain.setOnClickListener { backToMain() }
     }
 
     /** 검색 그룹 보기 -> 모든 그룹 보기 전환*/
     @SuppressLint("NotifyDataSetChanged")
-    private fun backToMain(view: View){
+    private fun backToMain(){
         studyGroupAdapter.studyGroupList = roomViewModel.roomInfo.value?: emptyList()
         studyGroupAdapter.notifyDataSetChanged()
-        view.visibility = View.GONE
+        binding.btnBackToMain.visibility = View.GONE
         roomViewModel.defaultValue()
         binding.tvActivityTitle.text = "스터디룸"
         binding.tvSortedBy.text = "최신순"

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="officer"
+            type="String" />
+        <import type="com.example.project_gunza.common.INTENT.OFFICER"
+            alias="is"/>
+        <import type="android.view.View"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".gunza_info.Certificate">
+
+        <include
+            layout="@layout/common_main_top_panel"
+            android:id="@+id/layerTopPanel"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <TextView
+            android:id="@+id/tvActivityTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorFrogGreen"
+            android:fontFamily="@font/gunza_font_pixel"
+            android:gravity="center"
+            android:text="사관학교 교육과정"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            app:drawableLeftCompat="@drawable/dot_particle_1"
+            app:drawableRightCompat="@drawable/dot_particle_2"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layerTopPanel" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorFrogGreen"
+            android:orientation="horizontal"
+            android:paddingHorizontal="5dp"
+            android:paddingBottom="10dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvActivityTitle">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnArmy"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="3.5dp"
+                android:layout_weight="1"
+                android:autoSizeTextType="uniform"
+                android:background="@{(officer == is.ARMY) ? @color/colorLemonGreen : @color/colorLightGreen}"
+                android:fontFamily="@font/gunza_font_pixel"
+                android:padding="10dp"
+                android:text="육군" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnAir"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="3.5dp"
+                android:layout_weight="1"
+                android:autoSizeTextType="uniform"
+                android:background="@{(officer == is.AIR) ? @color/colorLemonGreen : @color/colorLightGreen}"
+                android:fontFamily="@font/gunza_font_pixel"
+                android:padding="10dp"
+                android:text="공군" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnNavy"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="3.5dp"
+                android:layout_weight="1"
+                android:autoSizeTextType="uniform"
+                android:background="@{(officer == is.NAVY) ? @color/colorLemonGreen : @color/colorLightGreen}"
+                android:fontFamily="@font/gunza_font_pixel"
+                android:padding="10dp"
+                android:text="해군" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnROTC"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="3.5dp"
+                android:layout_weight="1"
+                android:autoSizeTextType="uniform"
+                android:background="@{(officer == is.ROTC) ? @color/colorLemonGreen : @color/colorLightGreen}"
+                android:fontFamily="@font/gunza_font_pixel"
+                android:padding="10dp"
+                android:text="3사관" />
+
+        </LinearLayout>
+
+        <ScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:paddingHorizontal="15dp"
+            android:paddingTop="20dp"
+            android:scrollbars="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+            tools:ignore="SpeakableTextPresentCheck">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="15dp"
+                android:orientation="vertical">
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:scrollbars="vertical"
+                    android:visibility="@{(officer == is.ARMY)? View.VISIBLE : View.GONE}"
+                    android:src="@drawable/army_officer" />
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:scrollbars="vertical"
+                    android:visibility="@{(officer == is.AIR)? View.VISIBLE : View.GONE}"
+                    android:src="@drawable/air_officer" />
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:scrollbars="vertical"
+                    android:visibility="@{(officer == is.NAVY)? View.VISIBLE : View.GONE}"
+                    android:src="@drawable/navy_officer" />
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:scrollbars="vertical"
+                    android:visibility="@{(officer == is.ROTC)? View.VISIBLE : View.GONE}"
+                    android:src="@drawable/rotc_officer" />
+            </LinearLayout>
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
+
+<!--        <androidx.appcompat.widget.AppCompatButton-->
+<!--            android:id="@+id/btnMoreData"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:background="@color/colorWoodBrown"-->
+<!--            android:fontFamily="@font/gunza_font_pixel"-->
+<!--            android:text="전체 데이터 확인하기"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:textSize="20sp"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            tools:visibility="visible" />-->

@@ -13,7 +13,7 @@
         android:layout_height="0dp"
         android:orientation="vertical"
         android:padding="15dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnMoveToGunzaInfo"
+        app:layout_constraintBottom_toTopOf="@+id/btnBackToMain"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -34,80 +34,29 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/examCertificate"
                 android:layout_width="0dp"
-                android:layout_height="130dp"
+                android:layout_height="110dp"
                 android:layout_marginEnd="5dp"
                 android:layout_weight="1"
                 android:background="@color/colorLemonGreen"
-                android:fontFamily="@font/kopup_d_medium"
+                android:fontFamily="@font/gunza_font_pixel"
                 android:text="응시순\n자격증 추천" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/passCertificate"
                 android:layout_width="0dp"
-                android:layout_height="130dp"
+                android:layout_height="110dp"
                 android:layout_marginStart="5dp"
                 android:layout_weight="1"
                 android:background="@color/colorLightGreen"
-                android:fontFamily="@font/kopup_d_medium"
+                android:fontFamily="@font/gunza_font_pixel"
                 android:text="합격순\n자격증 추천" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/kopup_d_medium"
-                android:text="대학생 정보"
-                android:textSize="15sp" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/kopup_d_medium"
-                android:text="도서관 정보"
-                android:textSize="15sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
-            android:orientation="horizontal">
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/remoteCourseSubjects"
-                android:layout_width="0dp"
-                android:layout_height="130dp"
-                android:layout_marginEnd="5dp"
-                android:layout_weight="1"
-                android:background="@color/colorLightGreen"
-                android:fontFamily="@font/kopup_d_medium"
-                android:text="대학별 원격강의\n개설과목 확인" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/defenseLibraryBooks"
-                android:layout_width="0dp"
-                android:layout_height="130dp"
-                android:layout_marginStart="5dp"
-                android:layout_weight="1"
-                android:background="@color/colorFrogGreen"
-                android:fontFamily="@font/kopup_d_medium"
-                android:text="국방전자도서관\n도서정보" />
         </LinearLayout>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/kopup_d_medium"
-            android:text="여가생활 정보"
+            android:text="대학생 정보"
             android:textSize="15sp" />
 
         <LinearLayout
@@ -117,35 +66,60 @@
             android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/militaryResorts"
+                android:id="@+id/remoteCourse"
                 android:layout_width="0dp"
-                android:layout_height="130dp"
+                android:layout_height="110dp"
                 android:layout_marginEnd="5dp"
                 android:layout_weight="1"
-                android:background="@color/colorFrogGreen"
-                android:fontFamily="@font/kopup_d_medium"
-                android:text="군 복지\n휴양시설" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/recreationalNearbyMines"
-                android:layout_width="0dp"
-                android:layout_height="130dp"
-                android:layout_marginStart="5dp"
-                android:layout_weight="1"
                 android:background="@color/colorLemonGreen"
-                android:fontFamily="@font/kopup_d_medium"
-                android:text="휴양시설\n주변 광광지" />
+                android:fontFamily="@font/gunza_font_pixel"
+                android:text="대학별 원격강의\n개설과목 확인" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/soldierBenefits"
+                android:id="@+id/remoteCoursePass"
                 android:layout_width="0dp"
-                android:layout_height="130dp"
+                android:layout_height="110dp"
                 android:layout_marginStart="5dp"
                 android:layout_weight="1"
                 android:background="@color/colorLightGreen"
-                android:fontFamily="@font/kopup_d_medium"
-                android:text="병사 확인\n혜택 정보" />
+                android:fontFamily="@font/gunza_font_pixel"
+                android:text="대학별 원격강의\n수료순 확인" />
         </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/kopup_d_medium"
+            android:text="사관학교 정보"
+            android:textSize="15sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/army"
+                android:layout_width="0dp"
+                android:layout_height="110dp"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="1"
+                android:background="@color/colorLemonGreen"
+                android:fontFamily="@font/gunza_font_pixel"
+                android:text="각군 사관학교\n교육과정" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/competitiveness"
+                android:layout_width="0dp"
+                android:layout_height="110dp"
+                android:layout_marginStart="5dp"
+                android:layout_weight="1"
+                android:background="@color/colorLightGreen"
+                android:fontFamily="@font/gunza_font_pixel"
+                android:text="각군 사관학교\n 입학 경쟁률"/>
+        </LinearLayout>
+
+
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton
@@ -161,4 +135,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:visibility="visible" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

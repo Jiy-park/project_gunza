@@ -21,7 +21,13 @@ class UserRepository{
         db.document(userId)
             .run{
                 when(fieldType){
-                    FIELD.TYPE.NORMAL -> { this.update(field, FieldValue.increment(value as Long)) }
+                    FIELD.TYPE.NORMAL -> {
+                        when(value){
+                            is Long -> { this.update(field, FieldValue.increment(value)) }
+                            is String -> { this.update(field, value) }
+                            else -> {}
+                        }
+                    }
                     FIELD.TYPE.LIST -> { this.update(field, FieldValue.arrayUnion(value)) }
                     FIELD.TYPE.MAP -> {
                         keyValue?.let { key->

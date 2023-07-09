@@ -4,11 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="com.example.project_gunza.common.VALUE"
+            alias="V"/>
+        <import type="android.view.View"/>
         <variable
             name="userViewModel"
             type="com.example.project_gunza.data_class.UserStruct" />
-        <import type="com.example.project_gunza.common.VALUE"
-            alias="V"/>
+        <variable
+            name="editMsg"
+            type="Boolean" />
+        <variable
+            name="editName"
+            type="Boolean" />
     </data>
 
     <LinearLayout
@@ -47,25 +54,116 @@
             android:background="@color/colorFrogGreen"
             android:paddingTop="10dp"
             android:orientation="vertical">
-            <TextView
-                android:layout_width="wrap_content"
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginVertical="10dp"
-                tools:text="사용자 한마디"
-                android:text="@{userViewModel.userMsg}"
-                android:textSize="25sp"
-                android:fontFamily="@font/gunza_font_pixel"
-                android:textColor="@color/white"/>
-            <TextView
-                android:layout_width="wrap_content"
+
+                android:orientation="horizontal"
+                android:gravity="center">
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivEditUserMsg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:src="@drawable/ic_edit"
+                    android:visibility="@{!editMsg ? View.VISIBLE : View.GONE}" />
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivCompleteUserMsg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_check2"
+                    android:layout_marginEnd="10dp"
+                    android:visibility="@{editMsg ? View.VISIBLE : View.GONE}"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginVertical="10dp"
+                    android:maxLength="25"
+                    android:maxWidth="200dp"
+                    tools:text="사용자 한마디"
+                    android:text="@{userViewModel.userMsg}"
+                    android:textSize="25sp"
+                    android:visibility="@{!editMsg ? View.VISIBLE : View.GONE}"
+                    android:fontFamily="@font/gunza_font_pixel"
+                    android:textColor="@color/white" />
+                <EditText
+                    android:id="@+id/editNewMsg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginVertical="10dp"
+                    android:maxLength="25"
+                    android:maxWidth="200dp"
+                    tools:text="사용자 한마디"
+                    android:focusable="true"
+                    android:text="@{userViewModel.userMsg}"
+                    android:hint="@{userViewModel.userMsg}"
+                    android:textColorHint="@color/colorHintText"
+                    android:backgroundTint="@color/white"
+                    android:visibility="@{editMsg ? View.VISIBLE : View.GONE}"
+                    android:textSize="25sp"
+                    android:fontFamily="@font/gunza_font_pixel"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                tools:text="유저 닉네임 | 유저 소속"
-                android:text="@{userViewModel.userName + ` | ` + userViewModel.userUnit}"
-                android:textSize="18sp"
-                android:fontFamily="@font/gunza_font_pixel"
-                android:textColor="@color/white"/>
+                android:orientation="horizontal"
+                android:gravity="center">
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivEditUserName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:src="@drawable/ic_edit"
+                    android:visibility="@{!editName ? View.VISIBLE : View.GONE}" />
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivCompleteUserName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_check2"
+                    android:layout_marginEnd="10dp"
+                    android:visibility="@{editName ? View.VISIBLE : View.GONE}"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    tools:text="유저 닉네임"
+                    android:text="@{userViewModel.userName}"
+                    android:visibility="@{!editName ? View.VISIBLE : View.GONE}"
+                    android:textSize="18sp"
+                    android:maxLength="6"
+                    android:fontFamily="@font/gunza_font_pixel"
+                    android:textColor="@color/white"/>
+                <EditText
+                    android:id="@+id/editNewName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    tools:text="유저 닉네임"
+                    android:maxLength="6"
+                    android:focusable="true"
+                    android:text="@{userViewModel.userName}"
+                    android:hint="@{userViewModel.userName}"
+                    android:visibility="@{editName ? View.VISIBLE : View.GONE}"
+                    android:textColorHint="@color/colorHintText"
+                    android:backgroundTint="@color/white"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/gunza_font_pixel"
+                    android:textColor="@color/white"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    tools:text=" | 유저 소속"
+                    android:text="@{` | ` + userViewModel.userUnit}"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/gunza_font_pixel"
+                    android:textColor="@color/white"/>
+            </LinearLayout>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -80,11 +178,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="테스트 용 자동 로그인 OK"
+                android:text="자동 로그인: O"
                 android:textSize="17sp"
+                android:layout_marginTop="10dp"
                 android:fontFamily="@font/gunza_font_pixel"
-                android:textColor="@color/white"
-                />
+                android:textColor="@color/white" />
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="match_parent"
                 android:layout_height="50dp"

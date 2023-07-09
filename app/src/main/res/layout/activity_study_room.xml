@@ -92,6 +92,6 @@
         android:textSize="20sp"
         android:textColor="@color/white"
         android:background="@color/colorWoodBrown"
-        android:visibility="invisible"
+        android:visibility="gone"
         tools:visibility="visible"/>
 </LinearLayout>
