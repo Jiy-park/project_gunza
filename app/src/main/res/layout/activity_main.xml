@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="com.example.project_gunza.common.VALUE"
+        <import type="com.dd2d.gunza.common.VALUE"
             alias="V"/>
         <import type="android.view.View"/>
         <variable
             name="userViewModel"
-            type="com.example.project_gunza.data_class.UserStruct" />
+            type="com.dd2d.gunza.data_class.UserStruct" />
         <variable
             name="editMsg"
             type="Boolean" />

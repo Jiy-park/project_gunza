@@ -6,7 +6,7 @@
     <data>
         <variable
             name="activity"
-            type="com.example.project_gunza.post_viewer.StudyGroupPost" />
+            type="com.dd2d.gunza.post_viewer.StudyGroupPost" />
         <variable
             name="likePost"
             type="Boolean" />
@@ -18,10 +18,10 @@
             type="Boolean" />
         <variable
             name="post"
-            type="com.example.project_gunza.data_class.PostStruct" />
+            type="com.dd2d.gunza.data_class.PostStruct" />
         <variable
             name="author"
-            type="com.example.project_gunza.data_class.SimpleUserStruct" />
+            type="com.dd2d.gunza.data_class.SimpleUserStruct" />
         <variable
             name="commentCount"
             type="Integer" />

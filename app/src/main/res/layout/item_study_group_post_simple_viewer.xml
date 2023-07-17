@@ -5,10 +5,10 @@
     <data>
         <variable
             name="post"
-            type="com.example.project_gunza.data_class.PostStruct" />
+            type="com.dd2d.gunza.data_class.PostStruct" />
         <variable
             name="author"
-            type="com.example.project_gunza.data_class.SimpleUserStruct" />
+            type="com.dd2d.gunza.data_class.SimpleUserStruct" />
     </data>
 
     <LinearLayout

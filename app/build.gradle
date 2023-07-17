@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.project_gunza'
+    namespace 'com.dd2d.gunza'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.project_gunza"
+        applicationId "com.dd2d.gunza"
         minSdk 30
         targetSdk 33
         versionCode 1

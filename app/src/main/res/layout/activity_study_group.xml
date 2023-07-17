@@ -7,7 +7,7 @@
         <import type="android.view.View"/>
         <variable
             name="simple"
-            type="com.example.project_gunza.data_class.SimpleStudyGroupStruct" />
+            type="com.dd2d.gunza.data_class.SimpleStudyGroupStruct" />
         <variable
             name="groupRank1Unit"
             type="String" />

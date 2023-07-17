@@ -6,7 +6,7 @@
         <import type="android.view.View"/>
         <variable
             name="holder"
-            type="com.example.project_gunza.post_viewer.PostCommentAdapter.Holder" />
+            type="com.dd2d.gunza.post_viewer.PostCommentAdapter.Holder" />
         <variable
             name="isAuthor"
             type="Boolean" />
@@ -15,11 +15,11 @@
             type="Boolean" />
         <variable
             name="comment"
-            type="com.example.project_gunza.data_class.CommentStruct" />
+            type="com.dd2d.gunza.data_class.CommentStruct" />
         <variable
             name="author"
-            type="com.example.project_gunza.data_class.SimpleUserStruct" />
-        <import type="com.example.project_gunza.common.VALUE"
+            type="com.dd2d.gunza.data_class.SimpleUserStruct" />
+        <import type="com.dd2d.gunza.common.VALUE"
             alias="V"/>
     </data>
 
