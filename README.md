@@ -11,9 +11,9 @@ Firestore를 활용하여 로그인 기능 및 게시글 작성/관람 등의 �
 데이터베이스(Firebase-Firestore) 구조기획
 
 # 사용 기술
-Android
-Kotlin
-MVVM
-Firebase-Firestore
+* Android
+* Kotlin
+* MVVM
+* Firebase-Firestore
 
 
