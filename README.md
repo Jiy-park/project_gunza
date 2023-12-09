@@ -5,6 +5,10 @@
 군인들을 위한 자기개발 커뮤니티 애플리케이션.  
 Firestore를 활용하여 로그인 기능 및 게시글 작성/관람 등의 기능을 수행하며, MVVM 패턴을 통해 뷰와 데이터를 개별로 관리.
 
+# 군자 사업기획서
+
+[군자 사업기획서.pdf](https://github.com/Jiy-park/project_gunza/files/13623454/default.pdf)
+
 # 담당 역할
 개발 총괄
 애플리케이션 공동 기획
