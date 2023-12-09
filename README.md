@@ -40,5 +40,6 @@ Firestore를 활용하여 로그인 기능 및 게시글 작성/관람 등의 �
 * Kotlin
 * MVVM
 * Firebase-Firestore
+* Glide
 
 
