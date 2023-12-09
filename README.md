@@ -27,9 +27,6 @@ Firestore를 활용하여 로그인 기능 및 게시글 작성/관람 등의 �
  
 </details>
 
-# 군자 사업기획서
-[군자 사업기획서.pdf](https://github.com/Jiy-park/project_gunza/files/13623454/default.pdf)
-
 # 담당 역할
 개발 총괄
 애플리케이션 공동 기획
