@@ -28,9 +28,9 @@ Firestore를 활용하여 로그인 기능 및 게시글 작성/관람 등의 �
 </details>
 
 # 담당 역할
-개발 총괄
-애플리케이션 공동 기획
-데이터베이스(Firebase-Firestore) 구조기획
+개발 총괄  
+애플리케이션 공동 기획  
+데이터베이스(Firebase-Firestore) 구조기획  
 
 # 사용 기술
 * Android
