@@ -5,19 +5,9 @@
 군인들을 위한 자기개발 커뮤니티 애플리케이션.  
 Firestore를 활용하여 로그인 기능 및 게시글 작성/관람 등의 기능을 수행하며, MVVM 패턴을 통해 뷰와 데이터를 개별로 관리.
 
-<details>
-  <summary>
-
 # 군자 소개 이미지
-    
-  </summary>
 
 ![gunza_intro](https://github.com/Jiy-park/Algorithm/assets/79889934/96fa8991-d496-4f2d-ae43-e117c674e607)
-  
-</details>
-
-<details>
-  <summary>
 
 # 군자 화면 구성
     
