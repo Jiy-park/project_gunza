@@ -14,16 +14,16 @@ Firestore를 활용하여 로그인 기능 및 게시글 작성/관람 등의 �
 ![gunza_flow](https://github.com/Jiy-park/Algorithm/assets/79889934/c3aa532f-4625-49b4-b4be-3db7ff77789e)
 
 # 개발 기간  
-2023.06.27 ~ 2023.07.09  
+* 2023.06.27 ~ 2023.07.09  
 
 # 개발 인원: 2인
-개발자 1인  
-디자이너 1인  
+* 개발자 1인  
+* 디자이너 1인  
 
 # 담당 역할
-개발 총괄 
-애플리케이션 공동 기획  
-데이터베이스(Firebase-Firestore) 구조기획  
+* 개발 총괄 
+* 애플리케이션 공동 기획  
+* 데이터베이스(Firebase-Firestore) 구조기획  
 
 # 사용 기술
 * Android
